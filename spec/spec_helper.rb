@@ -11,11 +11,12 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
 
-  config.after do
-    PxFusion.endpoint = nil
-    PxFusion.username = nil
-    PxFusion.password = nil
+  config.before do
+    PxFusion.endpoint = "http://pxfusion.local"
+    PxFusion.username = "tester"
+    PxFusion.password = "test123"
   end
+
 
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing

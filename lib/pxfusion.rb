@@ -1,4 +1,5 @@
 require "pxfusion/version"
+require "pxfusion/client"
 
 module PxFusion
   class << self
