@@ -4,9 +4,14 @@ require "pxfusion/transaction"
 
 module PxFusion
   class << self
-    attr_writer :endpoint, :username, :password, :default_currency
+    attr_writer :endpoint,
+                :username,
+                :password,
+                :default_currency,
+                :default_return_url,
+                :logging
 
-    [:endpoint, :username, :password].each do |required_attribute|
+    [:endpoint, :username, :password, :default_return_url].each do |required_attribute|
       define_method required_attribute do
         raise "#{required_attribute} must be set" if !instance_variable_get("@#{required_attribute}")
         instance_variable_get("@#{required_attribute}")
@@ -15,6 +20,10 @@ module PxFusion
 
     def default_currency
       @default_currency ||= "NZD"
+    end
+
+    def logging
+      @logging ||= true
     end
 
     def client
