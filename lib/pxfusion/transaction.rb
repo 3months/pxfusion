@@ -7,6 +7,7 @@ class PxFusion::Transaction < OpenStruct
       username: PxFusion.username,
       password: PxFusion.password,
       currency: PxFusion.default_currency,
+      return_url: PxFusion.default_return_url,
       type: 'Purchase'
     )
 
@@ -14,30 +15,44 @@ class PxFusion::Transaction < OpenStruct
     [:username, :password, :currency, :amount, :type, :reference].each do |required_attribute|
       raise ArgumentError.new("Missing attribute: #{required_attribute}") if !self.send(required_attribute)
     end
+
+    request_id!
   end
 
-  def find(id)
-    instantiate_from_soap!(id)
-  end
+  # def find(id)
+  #   instantiate_from_soap!(id)
+  # end
 
   private
 
     def request_id!
-      PxFusion.client.call(:get_transaction_id, message: Request.get_transaction_id(self))
+      response = PxFusion.client.call(
+        :get_transaction_id,
+        message: Request.get_transaction_id(self)
+      ).body[:get_transaction_id_response][:get_transaction_id_result]
+
+      self.id = response[:transaction_id]
+      self.session_id = response[:session_id]
+
+      raise "Session could not be established" unless id && session_id
     end
 
 
     module Request
       def self.get_transaction_id(transaction)
-        attributes = transaction.instance_variable_get("@table").dup.tap do |attrs|
-          attrs[:txnRef] = attrs.delete(:reference)
-          attrs[:txnType] = attrs.delete(:type)
-        end
-
+        # Build the hash to be sent to DPS
+        # THE ORDER MATTERS
+        attributes = transaction.instance_variable_get("@table")
         msg = {
-          username: attributes.delete(:username),
-          password: attributes.delete(:password),
-          tranDetail: attributes
+          username: attributes[:username],
+          password: attributes[:password],
+          tranDetail: {
+            amount: attributes[:amount],
+            currency: attributes[:currency],
+            returnUrl: attributes[:return_url],
+            txnRef: attributes[:reference],
+            txnType: attributes[:type]
+          }
         }
       end
     end
