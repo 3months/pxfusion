@@ -4,6 +4,14 @@
 # loaded once.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'webmock/rspec'
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'fixtures'
+  c.hook_into :webmock
+end
+
 require "pxfusion"
 
 RSpec.configure do |config|
