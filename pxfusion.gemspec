@@ -5,7 +5,7 @@ require 'pxfusion/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "pxfusion"
-  spec.version       = Pxfusion::VERSION
+  spec.version       = PxFusion::VERSION
   spec.authors       = ["Josh McArthur"]
   spec.email         = ["joshua.mcarthur@gmail.com"]
   spec.description   = %q{A Rubygem for talking to DPS's PxFusion payment product}
