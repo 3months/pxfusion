@@ -8,8 +8,9 @@ require 'webmock/rspec'
 require 'vcr'
 
 VCR.configure do |c|
-  c.cassette_library_dir = 'fixtures'
+  c.cassette_library_dir = 'spec/fixtures'
   c.hook_into :webmock
+  c.configure_rspec_metadata!
 end
 
 require "pxfusion"
@@ -20,9 +21,12 @@ RSpec.configure do |config|
   config.filter_run :focus
 
   config.before do
-    PxFusion.endpoint = "http://pxfusion.local"
-    PxFusion.username = "tester"
-    PxFusion.password = "test123"
+    PxFusion.endpoint = "https://sec.paymentexpress.com/pxf/pxf.svc"
+    PxFusion.username = "sample"
+    PxFusion.password = "sample"
+    PxFusion.default_return_url = "http://pxfusion.local/test"
+    PxFusion.logging = false
+    PxFusion.client
   end
 
 
