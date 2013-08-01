@@ -29,5 +29,17 @@ module PxFusion
     def client
       @client ||= Client.new
     end
+
+    def statuses
+      {
+        approved: 0,
+        declined: 1,
+        retry: 2,
+        invalid_post: 3,
+        unknown: 4,
+        cancelled: 5,
+        not_found: 6
+      }
+    end
   end
 end

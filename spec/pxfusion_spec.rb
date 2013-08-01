@@ -16,4 +16,14 @@ describe PxFusion do
     it { described_class.client.should be_a PxFusion::Client }
     it { c = described_class.client; described_class.client.should eq c }
   end
+
+  describe ".statuses" do
+    it { described_class.statuses[:approved].should eq 0 }
+    it { described_class.statuses[:declined].should eq 1 }
+    it { described_class.statuses[:retry].should eq 2 }
+    it { described_class.statuses[:invalid_post].should eq 3 }
+    it { described_class.statuses[:unknown].should eq 4 }
+    it { described_class.statuses[:cancelled].should eq 5 }
+    it { described_class.statuses[:not_found].should eq 6 }
+  end
 end
