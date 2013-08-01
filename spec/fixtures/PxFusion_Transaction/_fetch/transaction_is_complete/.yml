@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sec.paymentexpress.com/PxF/pxf.svc
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://paymentexpress.com"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:GetTransaction><tns:username><USERNAME></tns:username><tns:password><PASSWORD></tns:password><tns:transactionId>0000010016327641e4c03879868bd001</tns:transactionId></tns:GetTransaction></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - '"http://paymentexpress.com/IPxFusion/GetTransaction"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '529'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - DPS_PX_SERVER
+      Cache-Control:
+      - private
+      Content-Type:
+      - text/xml; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Thu, 01 Aug 2013 03:31:22 GMT
+      Content-Length:
+      - '769'
+    body:
+      encoding: UTF-8
+      string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><GetTransactionResponse
+        xmlns="http://paymentexpress.com"><GetTransactionResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><amount>1.00</amount><authCode>145217</authCode><billingId/><cardHolderName>JOE
+        BLOGGS</cardHolderName><cardName>Visa</cardName><cardNumber>411111........11</cardNumber><cardNumber2/><currencyId>554</currencyId><currencyName>NZD</currencyName><currencyRate
+        i:nil="true"/><cvc2ResultCode>NotUsed</cvc2ResultCode><dateExpiry>1212</dateExpiry><dateSettlement>2013-08-01T00:00:00</dateSettlement><dpsBillingId/><dpsTxnRef>0000000108d32712</dpsTxnRef><merchantReference>Px
+        Fusion - PHP</merchantReference><responseCode>00</responseCode><responseText>APPROVED</responseText><riskRuleMatches
+        xmlns:a="http://schemas.datacontract.org/2004/07/"/><sessionId>0000010016327641e4c03879868bd001</sessionId><status>0</status><testMode>false</testMode><transactionId>0000010016327641e4c03879868bd001</transactionId><transactionResultFields
+        xmlns:a="http://schemas.datacontract.org/2004/07/"/><txnData1/><txnData2/><txnData3/><txnMac>2BC20210</txnMac><txnRef>51f9cd5705064611</txnRef><txnType>Purchase</txnType></GetTransactionResult></GetTransactionResponse></s:Body></s:Envelope>
+    http_version: 
+  recorded_at: Thu, 01 Aug 2013 03:31:27 GMT
+recorded_with: VCR 2.5.0
