@@ -1,5 +1,7 @@
 # PxFusion
 
+[![Build Status](https://magnum.travis-ci.com/3months/pxfusion.png?token=FA4EnSunh4Af329WCePs&branch=master)](https://magnum.travis-ci.com/3months/pxfusion)
+
 A Rubygem for talking to DPS's PxFusion payment product via their SOAP API. Includes the ablity to start a transaction, and then query for the status of that transaction once the payment is complete, following the pictured flow:
 
 ![PxFusion Workflow](http://www.paymentexpress.com/DPS/media/technical/Work_Flow.png)
