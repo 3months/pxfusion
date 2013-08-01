@@ -1,6 +1,7 @@
-# Pxfusion
+# PxFusion
 
-TODO: Write a gem description
+A Rubygem for talking to DPS's PxFusion payment product via their SOAP API.
+
 
 ## Installation
 
@@ -27,3 +28,4 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
