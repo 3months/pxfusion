@@ -31,7 +31,35 @@ class PxFusion::Transaction < OpenStruct
     session_id
   end
 
+  def self.fetch(id)
+    response = PxFusion.client.call(:get_transaction,message: {username: PxFusion.username, password: PxFusion.password, transactionId: id}).body
+    attributes = response[:get_transaction_response][:get_transaction_result]
+    raise PxFusion::Transaction::NotFound if attributes[:status].to_i == PxFusion.statuses[:not_found]
+
+    mapped_attributes = attributes.dup
+    attributes.each do |attribute, value|
+      case attribute
+      when :currency_name
+        mapped_attributes[:currency] = attributes[:currency_name]
+      when :txn_type
+        mapped_attributes[:type] = attributes[:txn_type]
+      when :response_text
+        mapped_attributes[:response] = attributes[:response_text]
+      when :merchant_reference
+        mapped_attributes[:reference] = attributes[:merchant_reference]
+      when :status
+        mapped_attributes[:status] = attributes[:status].to_i
+      end
+    end
+
+    self.new(mapped_attributes.merge(username: PxFusion.username, password: PxFusion.password))
+  end
+
   private
+
+
+    class NotFound < Exception
+    end
 
     module Request
       def self.get_transaction_id(transaction)
