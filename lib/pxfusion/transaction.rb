@@ -15,28 +15,23 @@ class PxFusion::Transaction < OpenStruct
     [:username, :password, :currency, :amount, :type, :reference].each do |required_attribute|
       raise ArgumentError.new("Missing attribute: #{required_attribute}") if !self.send(required_attribute)
     end
-
-    request_id!
   end
 
-  # def find(id)
-  #   instantiate_from_soap!(id)
-  # end
-
-  private
-
-    def request_id!
-      response = PxFusion.client.call(
-        :get_transaction_id,
-        message: Request.get_transaction_id(self)
+  def generate_session_id!
+    response = PxFusion.client.call(
+      :get_transaction_id,
+      message: Request.get_transaction_id(self)
       ).body[:get_transaction_id_response][:get_transaction_id_result]
 
-      self.id = response[:transaction_id]
-      self.session_id = response[:session_id]
+    self.id = response[:transaction_id]
+    self.session_id = response[:session_id]
 
-      raise "Session could not be established" unless id && session_id
-    end
+    raise "Session could not be obtained from DPS" unless id && session_id
 
+    session_id
+  end
+
+  private
 
     module Request
       def self.get_transaction_id(transaction)
