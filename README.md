@@ -97,6 +97,11 @@ def new
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## Think something's missing?
+
+If you can think of a way that this gem could be easier to use, or if you've found a bug (reasonably) likely, then please [lodge an issue on Github](https://github.com/3months/pxfusion/issues/), so that we can help out. Thanks!
+
+
 ## If you need to regenerate the HTTP fixtures
 
 For portability and testing speed, we use fixtures to test API calls against, rather than calling the actual API. This works usually, but if you're seeing strange results or have changed any API methods, you can rengenerate the fixtures:
