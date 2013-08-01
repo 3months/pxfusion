@@ -14,6 +14,9 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
   c.filter_sensitive_data('<USERNAME>') { PxFusion.username }
   c.filter_sensitive_data('<PASSWORD>') { PxFusion.password }
+  c.ignore_request do |request|
+    URI(request.uri).query == "wsdl"
+  end
 end
 
 require "pxfusion"
