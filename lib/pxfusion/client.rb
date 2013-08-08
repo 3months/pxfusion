@@ -3,9 +3,9 @@ require "savon"
 class PxFusion::Client < Savon::Client
   def initialize(options = {})
     super(options.merge(
-      wsdl: PxFusion.endpoint + "?wsdl",
+      wsdl: PxFusion.endpoint.dup + "?wsdl",
       element_form_default: :qualified,
-      log: false
+      log: PxFusion.logging
     ))
   end
 end

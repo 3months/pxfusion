@@ -7,12 +7,12 @@ class PxFusion::Transaction < OpenStruct
       username: PxFusion.username,
       password: PxFusion.password,
       currency: PxFusion.default_currency,
-      return_url: PxFusion.default_return_url,
+      return_url: "https://test.host/",
       type: 'Purchase'
     )
 
     super(attributes)
-    [:username, :password, :currency, :amount, :type, :reference].each do |required_attribute|
+    [:username, :password, :currency, :amount, :type, :reference, :return_url].each do |required_attribute|
       raise ArgumentError.new("Missing attribute: #{required_attribute}") if !self.send(required_attribute)
     end
   end
