@@ -8,10 +8,10 @@ module PxFusion
                 :username,
                 :password,
                 :default_currency,
-                :default_return_url,
                 :logging
+    attr_accessor :default_return_url
 
-    [:username, :password, :default_return_url].each do |required_attribute|
+    [:username, :password].each do |required_attribute|
       define_method required_attribute do
         raise "#{required_attribute} must be set" if !instance_variable_get("@#{required_attribute}")
         instance_variable_get("@#{required_attribute}")
@@ -27,7 +27,7 @@ module PxFusion
     end
 
     def logging
-      @logging ||= true
+      @logging ||= false
     end
 
     def client
