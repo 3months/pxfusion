@@ -74,6 +74,7 @@ class PxFusion::Transaction < OpenStruct
             currency: attributes[:currency],
             returnUrl: attributes[:return_url],
             txnRef: attributes[:reference],
+            merchantReference: attributes[:reference],
             txnType: attributes[:type]
           }
         }
