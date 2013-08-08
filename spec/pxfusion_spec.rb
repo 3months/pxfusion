@@ -11,6 +11,7 @@ describe PxFusion do
     it { described_class.should respond_to :default_currency }
     it { described_class.default_currency.should_not be_blank }
     it { described_class.endpoint.should eq "https://sec.paymentexpress.com/pxf/pxf.svc" }
+    it { described_class.form_endpoint.should eq "https://sec.paymentexpress.com/pxmi3/pxfusionauth" }
     it { described_class.should respond_to :default_return_url }
     it { described_class.should respond_to :default_return_url= }
   end

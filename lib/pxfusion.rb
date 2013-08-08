@@ -5,6 +5,7 @@ require "pxfusion/transaction"
 module PxFusion
   class << self
     attr_writer :endpoint,
+                :form_endpoint,
                 :username,
                 :password,
                 :default_currency,
@@ -20,6 +21,10 @@ module PxFusion
 
     def endpoint
       @endpoint ||= "https://sec.paymentexpress.com/pxf/pxf.svc"
+    end
+
+    def form_endpoint
+      @form_endpoint ||= "https://sec.paymentexpress.com/pxmi3/pxfusionauth"
     end
 
     def default_currency
