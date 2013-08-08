@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe PxFusion do
   describe "configuration" do
-    [:endpoint, :username, :password, :default_return_url].each do |attr|
+    [:username, :password, :default_return_url].each do |attr|
       it { described_class.should respond_to :"#{attr}=" }
       it { expect { described_class.send(:"#{attr}=", nil); described_class.send(attr) }.to raise_error }
       it { expect { described_class.send(attr) }.to_not raise_error }
@@ -10,6 +10,7 @@ describe PxFusion do
 
     it { described_class.should respond_to :default_currency }
     it { described_class.default_currency.should_not be_blank }
+    it { described_class.endpoint.should eq "https://sec.paymentexpress.com/pxf/pxf.svc" }
   end
 
   describe ".client" do

@@ -11,11 +11,15 @@ module PxFusion
                 :default_return_url,
                 :logging
 
-    [:endpoint, :username, :password, :default_return_url].each do |required_attribute|
+    [:username, :password, :default_return_url].each do |required_attribute|
       define_method required_attribute do
         raise "#{required_attribute} must be set" if !instance_variable_get("@#{required_attribute}")
         instance_variable_get("@#{required_attribute}")
       end
+    end
+
+    def endpoint
+      @endpoint ||= "https://sec.paymentexpress.com/pxf/pxf.svc"
     end
 
     def default_currency

@@ -27,7 +27,6 @@ RSpec.configure do |config|
   config.filter_run :focus
 
   config.before do
-    PxFusion.endpoint = "https://sec.paymentexpress.com/pxf/pxf.svc"
     PxFusion.username = "sample"
     PxFusion.password = "sample"
     PxFusion.default_return_url = "http://pxfusion.local/test"
