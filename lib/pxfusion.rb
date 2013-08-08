@@ -1,7 +1,6 @@
 require "pxfusion/version"
 require "pxfusion/client"
 require "pxfusion/transaction"
-require "pxfusion/engine" if defined?(Rails)
 
 module PxFusion
   class << self
