@@ -14,7 +14,7 @@ describe PxFusion::Transaction do
     end
 
     context "missing attributes" do
-      it { expect { described_class.new(amount: "10.00") }.to raise_error(ArgumentError) }
+      it { expect { described_class.new(reference: "Test") }.to raise_error(ArgumentError) }
     end
 
     context "overriding globally-configured attributes", :vcr do
