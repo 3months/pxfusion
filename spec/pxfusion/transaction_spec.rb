@@ -20,6 +20,10 @@ describe PxFusion::Transaction do
     context "overriding globally-configured attributes", :vcr do
       it { described_class.new(amount: "10.00", reference: "12345", currency: "USD").currency.should eq "USD" }
     end
+
+    context "token billing" do
+      it { described_class.new(amount: "10.00", reference: "12345", token_billing: true).token_billing.should be_true }
+    end
   end
 
   describe ".generate_session_id!", :vcr do

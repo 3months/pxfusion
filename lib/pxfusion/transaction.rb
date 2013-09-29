@@ -8,7 +8,7 @@ class PxFusion::Transaction < OpenStruct
       password: PxFusion.password,
       currency: PxFusion.default_currency,
       return_url: "https://test.host/",
-      type: 'Purchase'
+      type: 'Purchase',
     )
 
     super(attributes)
@@ -75,7 +75,8 @@ class PxFusion::Transaction < OpenStruct
             returnUrl: attributes[:return_url],
             txnRef: attributes[:reference],
             merchantReference: attributes[:reference],
-            txnType: attributes[:type]
+            txnType: attributes[:type],
+            enableAddBillCard: attributes[:token_billing]
           }
         }
       end
