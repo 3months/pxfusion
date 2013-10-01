@@ -69,7 +69,7 @@ class PxFusion::Transaction < OpenStruct
         msg = {
           username: attributes[:username],
           password: attributes[:password],
-          enableAddBillCard: (attributes[:token_billing] ? true : nil),
+          enableAddBillCard: (attributes[:token_billing] ? "True" : nil),
           tranDetail: {
             amount: attributes[:amount],
             currency: attributes[:currency],
