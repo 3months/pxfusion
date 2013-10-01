@@ -76,7 +76,7 @@ class PxFusion::Transaction < OpenStruct
             txnRef: attributes[:reference],
             merchantReference: attributes[:reference],
             txnType: attributes[:type],
-            enableAddBillCard: attributes[:token_billing] ? "1" : nil
+            enableAddBillCard: attributes[:token_billing] ? true : nil
           }
         }
       end
