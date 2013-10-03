@@ -72,7 +72,7 @@ class PxFusion::Transaction < OpenStruct
           tranDetail: {
             amount: attributes[:amount],
             currency: attributes[:currency],
-            enableAddBillCard: (attributes[:token_billing] ? true : nil),
+            enableAddBillCard: (attributes[:token_billing] ? true : false),
             merchantReference: attributes[:reference],
             returnUrl: attributes[:return_url],
             txnRef: attributes[:reference],
