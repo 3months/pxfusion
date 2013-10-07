@@ -62,23 +62,47 @@ class PxFusion::Transaction < OpenStruct
     end
 
     module Request
-      def self.get_transaction_id(transaction)
-        # Build the hash to be sent to DPS
-        # THE ORDER MATTERS
+      def self.get_transaction_id_with_token(transaction)
         attributes = transaction.instance_variable_get("@table")
+
         msg = {
           username: attributes[:username],
           password: attributes[:password],
           tranDetail: {
             amount: attributes[:amount],
             currency: attributes[:currency],
-            enableAddBillCard: (attributes[:token_billing] ? true : nil),
+            enableAddBillCard: true,
             merchantReference: attributes[:reference],
             returnUrl: attributes[:return_url],
             txnRef: attributes[:reference],
             txnType: attributes[:type]
           }
         }
+      end
+
+      def self.get_transaction_id_without_token(transaction)
+        attributes = transaction.instance_variable_get("@table")
+
+        msg = {
+          username: attributes[:username],
+          password: attributes[:password],
+          tranDetail: {
+            amount: attributes[:amount],
+            currency: attributes[:currency],
+            merchantReference: attributes[:reference],
+            returnUrl: attributes[:return_url],
+            txnRef: attributes[:reference],
+            txnType: attributes[:type]
+          }
+        }
+      end
+
+      def self.get_transaction_id(transaction)
+        # Build the hash to be sent to DPS
+        # THE ORDER MATTERS
+        attributes = transaction.instance_variable_get("@table")
+
+        attributes[:token_billing] ? get_transaction_id_with_token(transaction) : get_transaction_id_without_token(transaction)
       end
     end
 end
