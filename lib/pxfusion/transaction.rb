@@ -102,8 +102,7 @@ class PxFusion::Transaction < OpenStruct
         # THE ORDER MATTERS
         attributes = transaction.instance_variable_get("@table")
 
-        return get_transaction_id_with_token(transaction) if attributes[:token_billing]
-        get_transaction_id_without_token(transaction)
+        attributes[:token_billing] ? get_transaction_id_with_token(transaction) : get_transaction_id_without_token(transaction)
       end
     end
 end
