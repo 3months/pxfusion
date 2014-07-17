@@ -33,7 +33,7 @@ module PxFusion
     end
 
     def logger
-      @logger ||= Logger.new(Rails.root.join('log', 'pxfusion.log')) if logging
+      @logger ||= Logger.new(STDOUT) if logging
     end
 
     def logging
