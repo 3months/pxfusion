@@ -5,7 +5,8 @@ class PxFusion::Client < Savon::Client
     super(options.merge(
       wsdl: PxFusion.endpoint.dup + "?wsdl",
       element_form_default: :qualified,
-      log: PxFusion.logging
+      log: PxFusion.logging,
+      logger: PxFusion.logger
     ))
   end
 end
