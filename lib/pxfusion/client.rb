@@ -6,7 +6,8 @@ class PxFusion::Client < Savon::Client
       wsdl: PxFusion.endpoint.dup + "?wsdl",
       element_form_default: :qualified,
       log: PxFusion.logging,
-      logger: PxFusion.logger
+      logger: PxFusion.logger,
+      filters: [:password]
     ))
   end
 end
