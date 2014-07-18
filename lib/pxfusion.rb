@@ -9,6 +9,7 @@ module PxFusion
                 :username,
                 :password,
                 :default_currency,
+                :logger,
                 :logging
     attr_accessor :default_return_url
 
@@ -29,6 +30,10 @@ module PxFusion
 
     def default_currency
       @default_currency ||= "NZD"
+    end
+
+    def logger
+      @logger ||= Logger.new(STDOUT) if logging
     end
 
     def logging
