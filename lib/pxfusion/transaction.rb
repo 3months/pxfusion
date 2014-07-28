@@ -15,6 +15,13 @@ class PxFusion::Transaction < OpenStruct
     [:username, :password, :currency, :amount, :type].each do |required_attribute|
       raise ArgumentError.new("Missing attribute: #{required_attribute}") if !self.send(required_attribute)
     end
+
+    {amount: 12, currency: 3, reference: 16, return_url: 255, type: 8}.each_pair do |attribute, length|
+      next unless self.send(attribute)
+      attribute_value = self.send(attribute)
+      given_length = attribute_value.length
+      raise ArgumentError.new("PxFusion #{attribute} too long (max #{length} characters). #{attribute} given (#{given_length} characters): #{attribute_value}") if given_length > length
+    end
   end
 
   def generate_session_id!
