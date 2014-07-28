@@ -22,7 +22,7 @@ describe PxFusion::Transaction do
     end
 
     context "token billing" do
-      it { described_class.new(amount: "10.00", reference: "12345", token_billing: true).token_billing.should be_true }
+      it { described_class.new(amount: "10.00", reference: "12345", token_billing: true).token_billing.should be_truthy }
     end
   end
 
