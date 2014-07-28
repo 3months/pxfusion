@@ -18,7 +18,7 @@ class PxFusion::Transaction < OpenStruct
 
     {amount: 12, currency: 3, reference: 16, return_url: 255, type: 8}.each_pair do |attribute, length|
       next unless self.send(attribute)
-      attribute_value = self.send(attribute)
+      attribute_value = self.send(attribute).to_s
       given_length = attribute_value.length
       raise ArgumentError.new("PxFusion #{attribute} too long (max #{length} characters). #{attribute} given (#{given_length} characters): #{attribute_value}") if given_length > length
     end
