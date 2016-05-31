@@ -26,18 +26,20 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - DPS_PX_SERVER
       Cache-Control:
       - private
+      Content-Length:
+      - '889'
       Content-Type:
       - text/xml; charset=utf-8
-      Vary:
-      - Accept-Encoding
+      Server:
+      - ''
+      X-Aspnet-Version:
+      - ''
+      X-Powered-By:
+      - ''
       Date:
-      - Thu, 08 Aug 2013 02:03:37 GMT
-      Content-Length:
-      - '561'
+      - Tue, 31 May 2016 01:10:21 GMT
     body:
       encoding: UTF-8
       string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><GetTransactionResponse
@@ -46,5 +48,5 @@ http_interactions:
         xmlns:a="http://schemas.datacontract.org/2004/07/"/><sessionId>1234</sessionId><status>6</status><testMode>false</testMode><transactionId>1234</transactionId><transactionResultFields
         xmlns:a="http://schemas.datacontract.org/2004/07/"/><txnData1/><txnData2/><txnData3/><txnMac/><txnRef/><txnType/></GetTransactionResult></GetTransactionResponse></s:Body></s:Envelope>
     http_version: 
-  recorded_at: Thu, 08 Aug 2013 02:03:39 GMT
-recorded_with: VCR 2.5.0
+  recorded_at: Tue, 31 May 2016 01:10:21 GMT
+recorded_with: VCR 3.0.3
