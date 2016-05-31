@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe PxFusion::Client do
-  it { described_class.superclass.should eq Savon::Client }
+  it { expect(described_class.superclass).to eq Savon::Client }
 
   describe ".initialize" do
     subject { described_class.new }

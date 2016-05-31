@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sec.paymentexpress.com/PxF/pxf.svc
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://paymentexpress.com"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><tns:GetTransactionId><tns:username><USERNAME></tns:username><tns:password><PASSWORD></tns:password><tns:tranDetail><tns:amount>10.00</tns:amount><tns:currency>NZD</tns:currency><tns:merchantReference>1464657024</tns:merchantReference><tns:returnUrl>https://test.host/</tns:returnUrl><tns:txnRef>1464657024</tns:txnRef><tns:txnType>Purchase</tns:txnType></tns:tranDetail></tns:GetTransactionId></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - '"http://paymentexpress.com/IPxFusion/GetTransactionId"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '733'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Length:
+      - '486'
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - ''
+      X-Aspnet-Version:
+      - ''
+      X-Powered-By:
+      - ''
+      Date:
+      - Tue, 31 May 2016 01:10:27 GMT
+    body:
+      encoding: UTF-8
+      string: <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><GetTransactionIdResponse
+        xmlns="http://paymentexpress.com"><GetTransactionIdResult xmlns:a="http://schemas.datacontract.org/2004/07/"
+        xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><a:sessionId>000003005060393900e01637ed00c0b7</a:sessionId><a:success>true</a:success><a:transactionId>000003005060393900e01637ed00c0b7</a:transactionId></GetTransactionIdResult></GetTransactionIdResponse></s:Body></s:Envelope>
+    http_version: 
+  recorded_at: Tue, 31 May 2016 01:10:27 GMT
+recorded_with: VCR 3.0.3

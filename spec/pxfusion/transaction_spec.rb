@@ -8,9 +8,9 @@ describe PxFusion::Transaction do
 
   describe ".initialize" do
     context "normal attributes passed in" do
-      it { transaction.amount.should eq "10.00" }
-      it { transaction.reference.should eq timestamp }
-      it { transaction.currency.should eq "NZD" }
+      it { expect(transaction.amount).to eq "10.00" }
+      it { expect(transaction.reference).to eq timestamp }
+      it { expect(transaction.currency).to eq "NZD" }
     end
 
     context "missing attributes" do
@@ -18,11 +18,13 @@ describe PxFusion::Transaction do
     end
 
     context "overriding globally-configured attributes", :vcr do
-      it { described_class.new(amount: "10.00", reference: "12345", currency: "USD").currency.should eq "USD" }
+      subject { described_class.new(amount: "10.00", reference: "12345", currency: "USD") }
+      it { expect(subject.currency).to eq "USD" }
     end
 
     context "token billing" do
-      it { described_class.new(amount: "10.00", reference: "12345", token_billing: true).token_billing.should be_truthy }
+      subject { described_class.new(amount: "10.00", reference: "12345", token_billing: true) }
+      it { expect(subject.token_billing).to be_truthy }
     end
   end
 
@@ -35,10 +37,10 @@ describe PxFusion::Transaction do
   describe ".fetch" do
     context "transaction is complete", :vcr do
       subject { PxFusion::Transaction.fetch(complete_transaction_id) }
-      it { subject.currency.should eq "NZD" }
-      it { subject.amount.should eq "1.00" }
-      it { subject.status.should eq PxFusion.statuses[:approved] }
-      it { subject.response.should_not be_empty }
+      it { expect(subject.currency).to eq "NZD" }
+      it { expect(subject.amount).to eq "1.00" }
+      it { expect(subject.status).to eq PxFusion.statuses[:approved] }
+      it { expect(subject.response).to_not be_empty }
     end
 
     context "transaction is incomplete", :vcr do
